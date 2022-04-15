@@ -26,7 +26,14 @@ class Game
             show_word(Dir.children('saved_games'))
             print "\n\n"
             puts "Which one would you like to load into?"
-            file_name = gets.chomp
+            while file_name = gets.chomp
+                unless Dir.children('saved_games').any?(file_name)
+                  puts "File not found. Try again."
+                  print "\n"
+                else
+                  break
+                end
+            end
             load(file_name)
         end
     end
